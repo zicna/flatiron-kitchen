@@ -1,0 +1,17 @@
+<%= form_for ingredient do |f| %>
+    <fieldset>
+        <legend><b>New ingredient</b> </legend>
+        <p>
+            <%= f.label :name, "Ingredient Name: " %>
+            <%= f.text_field :name %>
+        </p>
+        <p>
+            <%= f.label :quantity, "Quantity: " %>
+            <%= f.text_field :quantity %>
+        </p>
+    </fieldset>
+
+    
+    <%= f.submit %>
+<% end %>
+

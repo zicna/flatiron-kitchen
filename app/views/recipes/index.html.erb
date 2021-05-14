@@ -1,0 +1,15 @@
+<h1>All recipes in our kitchen:</h1>
+<ol>
+    <% @recipes.each do |recipe| %>
+        <li>
+            <p> Name: 
+                <%= link_to recipe.name, recipe_path(recipe) %>
+            </p>
+            <p>Description:
+                <%= recipe.description%>
+            </p>
+        </li>
+    <% end %>
+</ol>
+
+<%= link_to 'New', new_recipe_path %>

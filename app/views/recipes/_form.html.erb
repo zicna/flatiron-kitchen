@@ -1,0 +1,31 @@
+<%= form_for recipe do |f| %>
+    <fieldset>
+        <legend><b>New Recipe</b></legend>
+            <%= f.label :name, 'Name: ' %>
+            <%= f.text_field :name %><br>
+
+            <%= f.label :description, 'Description: ' %>
+            <%= f.text_field :description%><br>
+    </fieldset>
+    <br>
+    <fieldset>
+        <legend>Choose ingredients form existing: </legend>
+        <%= f.collection_check_boxes :ingredients, Ingredient.all, :id, :name%>
+    </fieldset>
+    <br>
+    <fieldset>
+        <legend>Create new ingredient for your recipe: </legend>
+        <%= fields_for recipe.ingredients.build do |ff|%>
+            <p>
+                <%= ff.label :name, 'Name: '%>
+                <%=  ff.text_field :name %>
+            </p>
+            <p>
+                <%= ff.label :quantity, 'Quantity: ' %>
+                <%= ff.text_field :quantity%>
+            </p>
+            <% end %>
+    </fieldset>
+    <br><br>
+    <%= f.submit %>
+<% end %>
