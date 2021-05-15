@@ -11,15 +11,19 @@ class RecipesController < ApplicationController
 
     def new
         # @recipe.ingredients.build
+        @recipe.ingredients.build
     end
 
     def create
         # raise params.inspect
-        @recipe = Recipe.new
-        @recipe.name = params[:recipe][:name]
-        @recipe.description = params[:recipe][:description]
+        @recipe = Recipe.new(recipe_params)
+        # binding.pry
+        # @recipe.ingredients.build(name: recipe_params[:ingredient_attributes][:name])
+        # @recipe.name = params[:recipe][:name]
+        # @recipe.description = params[:recipe][:description]
 
         if @recipe.save
+          
             redirect_to recipes_path
         else
             render :new
@@ -57,7 +61,7 @@ class RecipesController < ApplicationController
     end
 
     def recipe_params
-        params.require(:recipe).permit(:name, :description, ingredients: [])
+        params.require(:recipe).permit(:name, :description, ingredient_ids: [], ingredient_attributes:{})
     end
 
 end
